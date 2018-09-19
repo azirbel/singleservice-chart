@@ -7,11 +7,13 @@ replicaCount: 1
 image:
   repository: nginx
   tag: stable
+  digest: ""
   pullPolicy: IfNotPresent
 
 service:
   type: ClusterIP
-  port: 80
+  externalPort: 80
+  internalPort: 3000
 
 ingress:
   enabled: false
