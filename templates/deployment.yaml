@@ -32,12 +32,12 @@ spec:
             - containerPort: {{ .Values.service.internalPort }}
           livenessProbe:
             httpGet:
-              path: /
-              port: {{ .Values.service.internalPort }}
+              path: /hello/live
+              port: 3000
           readinessProbe:
             httpGet:
-              path: /
-              port: {{ .Values.service.internalPort }}
+              path: /hello/live
+              port: 3000
           volumeMounts:
           - name: static-content
             mountPath: /usr/share/nginx/html
