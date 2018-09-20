@@ -28,8 +28,9 @@ run:
     fi
     mkdir -p helm-repo
     helm init --client-only
-    VERSION=1.0.1
+    GIT_SHA=$(cd chart-source && git rev-parse HEAD)
+    APP_VERSION=$(cd chart-source && cat VERSION)
+    VERSION="$APP_VERSION-$GIT_SHA"
     cp -a chart-source $chart_name
     helm package $chart_name -d helm-repo --version $VERSION
     helm gcs push helm-repo/$chart_name-$VERSION.tgz gs://$bucket
-   
